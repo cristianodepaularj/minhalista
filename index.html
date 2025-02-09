@@ -51,6 +51,7 @@
         <h2>Lista de Tarefas</h2>
         <input type="text" id="taskInput" placeholder="Digite uma tarefa">
         <button onclick="addTask()">Adicionar</button>
+        <button onclick="generatePDF()">Gerar PDF</button>
         <ul id="taskList"></ul>
     </div>
 
@@ -74,6 +75,16 @@
         
         function removeTask(button) {
             button.parentElement.remove();
+        }
+        
+        function generatePDF() {
+            let taskList = document.getElementById("taskList").innerHTML;
+            let newWindow = window.open('', '', 'width=800,height=600');
+            newWindow.document.write('<html><head><title>Lista de Tarefas</title></head><body>');
+            newWindow.document.write('<h2>Lista de Tarefas</h2><ul>' + taskList + '</ul>');
+            newWindow.document.write('</body></html>');
+            newWindow.document.close();
+            newWindow.print();
         }
     </script>
 </body>
